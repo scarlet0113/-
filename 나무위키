@@ -1,0 +1,2 @@
+namu.wiki##li:has(time):not(*:has([href*='/raw/'])):upward(2)
+namu.wiki##span:has-text(더 보기):upward(2):has([target])
