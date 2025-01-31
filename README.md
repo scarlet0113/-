@@ -1,3 +1,7 @@
+https://drive.google.com/file/d/1QCc0p-kb51EwoMkZ7kPP4oEwr1GzlZpu/view?usp=sharing
+주딱 픽
+
+
 # -
 NAVER
 - 기본적인 네이버 배너 광고 차단
