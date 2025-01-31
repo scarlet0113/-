@@ -1,0 +1,6 @@
+mlbpark.donga.com##.coupang_cont
+mlbpark.donga.com##[id^='naver_cont']
+mlbpark.donga.com##ul.sub_lists_today.lists > li.items:nth-of-type(6)::before
+talk.op.gg##[class]:has(> [href^="https://talk.op.gg/app-download"])
+lamu.city#%#//let('set-constant', 'adblockcheck', '1')
+||apps.m.sooplive.co.kr/universal/a/andinstall^$all
