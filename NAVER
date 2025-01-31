@@ -1,0 +1,11 @@
+naver.com##div[class*="ad"]:not([class*="image"])
+naver.com##div[id*="ad"]:not([id*="image"])
+naver.com##div[class*="brand"]
+naver.com##a[href*="ad"]
+naver.com##div[class*="powerlink"]
+naver.com###powerlink-list
+naver.com##div[class*="ad_section"]
+naver.com##div[class*="ad_area"]
+naver.com##div[class*="ad_related"]
+naver.com##div[class*="ad_container"]
+naver.com##div[class*="sponsor"]
