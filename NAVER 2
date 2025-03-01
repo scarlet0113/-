@@ -1,0 +1,16 @@
+! 네이버 검색 결과 상단 광고 차단
+www.naver.com##.ad_section
+www.naver.com##[class*="powerlink"]
+www.naver.com##[id^="power_link_"]
+
+! 네이버 검색 결과 하단 관련 광고 차단
+www.naver.com##.lst_relate_ad
+www.naver.com##.ad_box
+
+! 네이버 모바일 광고 차단
+m.search.naver.com##.ad_section
+m.search.naver.com##[class*="link_ad"]
+m.search.naver.com##[class*="ad_area"]
+
+! 네이버 광고 프레임 차단
+||naver.com^$subdocument,domain=naver.com
