@@ -1,0 +1,94 @@
+! Title: 통합 애드가드 갤러리 필터
+! Version: 2025-03-20 (최적화)
+! Description: 오차단 및 Anti-adblock, 광고(영역) 등 List-KR의 문제점을 해결하고, 중복 및 충돌 규칙을 정리 및 최적화한 필터입니다. For Adguard, uBo, Brave
+! Homepage: https://m.dcinside.com/gallog/cent8649
+
+! From ublock filter
+##[id^='div-gpt-ad']:not([style^='width: 1px; height: 1px; position: absolute; left: -10000px; top: -']):not([style='pointer-events: none; height: 1px; width: 0px; opacity: 0; visibility: hidden; position: fixed; bottom: 0px;'])
+naver.com,~chzzk.naver.com##+js(addEventListener-defuser, /contextmenu|selectstart|dragstart/)
+
+! 안티 애드블록 스크립트 차단
+*#%#//scriptlet('prevent-fetch', 'doubleclick.net')
+*#%#//scriptlet('prevent-fetch','pagead2.googlesyndication.com')
+*#%#//scriptlet('prevent-xhr','pagead2.googlesyndication.com')
+||maxmovie.com/_next/static/chunks/framework.aa400efa16f23e2b0cfe.js
+
+! 나무위키 관련 규칙 (통합 및 최적화)
+@@||namu.wiki^$generichide
+namu.wiki##div[class][id]:empty
+namu.wiki##li:has(time):not(*:has([href*='/raw/'])):upward(2)
+namu.wiki##span:has-text(더 보기):upward(2):has([target])
+
+! 일반적인 광고 차단 규칙 (선택자 통합)
+*##.ad-view, .happy-header-mobile, .happy-under-player-mobile
+*##[id*='powerLink'], [id*='powerlink'], [id^='hd_pop']
+*##[target='_blank']:has([src*='/banner'])
+*##body:has-text(pierrotmalls@domain.com)
+*##cloudflare-app
+*##div[class*='ad'][id^='AD'], div[class^='AD'][style]
+*##iframe[src*='ad.doorigo.co.kr'], iframe[src*='cdn.targetpush.co.kr'], iframe[src*='digitalcamp.co.kr'], iframe[src*='sga.adp']
+*##img[alt$='광고']
+
+! 도메인 기반 광고 차단 규칙 (유지)
+[$domain=/^booktoki\d+.com/]##.basic-banner.row.row-10, .col-sm-9.col-md-9.col-15, li:has([target])
+[$domain=/^manatoki\d+.net/]##.basic-banner.row.row-10, .board-tail-banner, [style="margin-bottom: 20px;"].row.row-15, li:has([target])
+[$domain=/^newtoki\d+.com/]##.basic-banner.row.row-10, .board-tail-banner, [style="margin-bottom: 20px;"].row.row-15, div.col-15.col-md-9, li:has([target])
+
+! 방해요소(우클릭 방지) 차단 (최적화)
+cafe.naver.com##*:style(-webkit-touch-callout: default !important; -webkit-user-select: text !important; -moz-user-select: text !important; -ms-user-select: text !important; user-select: text !important;)
+[$domain=/^booktoki\d+.com/]###novel_content:style(-webkit-touch-callout: default !important; -webkit-user-select: text !important; -moz-user-select: text !important; -ms-user-select: text !important; user-select: text !important;)
+[$domain=/^manatoki\d+.net/,/^newtoki\d+.com/]#%#//scriptlet('abort-current-inline-script', 'oncontextmenu')
+
+! 트래커 차단 (유지)
+fmkorea.com#%#//scriptlet('set-constant', 'link_url', '')
+||dcinside.com/_js/jquery/jquery.iframetracker.js
+||dcinside.com/js/kakao.min.js
+||google.*/search$removeparam=/^(ved|uact|rlz|oq|k|sclient|iflsig|bih|biw|client|hl|cp|dpr)=/
+||graph.facebook.com^
+||wcs.naver.net^$domain=dcinside.com
+@@||graph.facebook.com^$app=com.facebook.katana|com.instagram.android|com.myinsta.android
+@@||graph.facebook.com^$domain=fmkorea.com|facebook.com|instagram.com
+
+! 애드가드 필터 오차단 해제 (유지)
+@@||ad*.cgv.co.kr^
+@@||ad-img.gmarket.com^$domain=gmarket.co.kr|auction.co.kr
+@@||adcr.naver.com^$app=com.nhn.android.search
+@@||app.appsflyer.com^$domain=ofw.adison.co
+@@||assets.011st.com/$domain=11pcs.11st.co.kr
+@@||avdbs.com^$generichide
+@@||edge-live.joongna.com/api/web-ads/
+@@||ssl.pstatic.net^$script,domain=nid.naver.com
+
+!! 스텔스모드 예외 규칙 (유지)
+@@||client-rapi-missav.recombee.com^
+@@||co.kr^$stealth=dpi
+@@||go.kr^$stealth=dpi
+@@||google.*/search$stealth=useragent|ip
+@@||remotedesktop.google.com^$stealth=webrtc
+
+! SFF 갤러리 규칙 (유지)
+@@||192.168.$stealth
+@@||isplus.$stealth=dpi
+@@||onelink.me^$stealth=dpi
+@@||ses.signgate.com^$stealth=dpi
+@@||nid.naver.com^$stealth=dpi
+@@||kurly.com^$stealth=dpi
+@@||startpage.com^$stealth=dpi
+@@||app.link^$stealth=dpi
+
+!! 기믹 (유지)
+! 구글 고급검색 메뉴 자동 오픈
+google.*#%#//scriptlet('trusted-click-element', '[aria-controls="hdtbMenus"][aria-expanded="false"][role="button"]', '', '2000')
+
+!! 커스텀: 네이버 관련 규칙 (통합 및 최적화)
+! 네이버 메일 예외 규칙
+@@||mail.naver.com/*
+@@||naver.com/api/*
+@@||naver.com/download/*
+@@||naver.com/attachment/*
+
+! 네이버 검색 결과 광고 차단 (통합)
+www.naver.com##.ad_section, [class*="powerlink"], [id^="power_link_"], .lst_relate_ad, .ad_box
+m.search.naver.com##.ad_section, [class*="link_ad"], [class*="ad_area"]
+search.naver.com##.related_ad
+||naver.com^$subdocument,domain=naver.com
