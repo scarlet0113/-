@@ -1,6 +1,6 @@
 ! Title: 통합 애드가드 필터
-! Version: 2025-03-20 (최적화)
-! Description: 오차단 및 Anti-adblock, 광고(영역) 등 List-KR의 많은 문제점을 해결하고, 불필요한 규칙을 간소화하여 성능을 최적화한 필터입니다. For Adguard, uBo, Brave
+! Version: 2025-03-20 (유지 및 최적화)
+! Description: 오차단 및 Anti-adblock, 광고(영역) 등 List-KR의 많은 문제점을 해결하고, 규칙 간소화를 통해 성능을 최적화한 필터입니다. For Adguard, uBo, Brave
 
 ! From ublock filter
 ##[id^='div-gpt-ad']:not([style^='width: 1px; height: 1px; position: absolute; left: -10000px; top: -']):not([style='pointer-events: none; height: 1px; width: 0px; opacity: 0; visibility: hidden; position: fixed; bottom: 0px;'])
@@ -169,18 +169,31 @@ google.*#%#//scriptlet('trusted-click-element', '[aria-controls="hdtbMenus"][ari
 fmkorea.com#%#(function(){window.addEventListener('load',function(){const commentElements=document.querySelectorAll('li[id^="comment"]');commentElements.forEach(function(commentElement){const fileLinks=commentElement.querySelectorAll('a[href^="//getfile.fmkorea.com/getfile.php?"], a[href^="https://image.fmkorea.com/files/attach"]');fileLinks.forEach(function(link){const url=link.getAttribute('href');const isImage=/\.(jpg|jpeg|png|gif|webp)($|\?)/i.test(url);const isVideo=/\.(mp4|webm|ogg|mkv|avi)($|\?)/i.test(url);const originalText=link.textContent;link.style.display='none';if(isImage){const img=document.createElement('img');img.src=url.startsWith('//')?'https:'+url:url;img.style.maxWidth='100%';img.style.display='block';img.style.marginTop='10px';img.style.marginBottom='10px';img.alt=originalText;link.parentNode.insertBefore(img,link.nextSibling);}else if(isVideo){const video=document.createElement('video');video.src=url.startsWith('//')?'https:'+url:url;video.controls=true;video.style.maxWidth='100%';video.style.display='block';video.style.marginTop='10px';video.style.marginBottom='10px';link.parentNode.insertBefore(video,link.nextSibling);}else if(url.includes('getfile.fmkorea.com')||url.includes('image.fmkorea.com/files/attach')){const img=document.createElement('img');img.src=url.startsWith('//')?'https:'+url:url;img.style.maxWidth='100%';img.style.display='block';img.style.marginTop='10px';img.style.marginBottom='10px';img.alt=originalText;img.onerror=function(){this.remove();link.style.display='';};link.parentNode.insertBefore(img,link.nextSibling);}});});});})();
 
 !! 커스텀
-! 네이버 관련 규칙 (통합 및 순서 변경)
 ! 네이버 메일 예외 규칙
 @@||mail.naver.com/*
 @@||naver.com/api/*
 @@||naver.com/download/*
 @@||naver.com/attachment/*
 
-! 네이버 검색 결과 광고 차단 (통합)
-www.naver.com##.ad_section, [class*="powerlink"], [id^="power_link_"], .lst_relate_ad, .ad_box
-m.search.naver.com##.ad_section, [class*="link_ad"], [class*="ad_area"]
-search.naver.com##.related_ad
+! 네이버 검색 결과 상단 광고 차단
+www.naver.com##.ad_section
+www.naver.com##[class*="powerlink"]
+www.naver.com##[id^="power_link_"]
+
+! 네이버 검색 결과 하단 관련 광고 차단
+www.naver.com##.lst_relate_ad
+www.naver.com##.ad_box
+
+! 네이버 모바일 광고 차단
+m.search.naver.com##.ad_section
+m.search.naver.com##[class*="link_ad"]
+m.search.naver.com##[class*="ad_area"]
+
+! 네이버 광고 프레임 차단
 ||naver.com^$subdocument,domain=naver.com
+
+! 네이버 검색 관련 광고 차단
+search.naver.com##.related_ad
 
 ! 다음 메일 예외 규칙
 @@||mail.daum.net/*
