@@ -1,6 +1,11 @@
 https://drive.google.com/file/d/1QCc0p-kb51EwoMkZ7kPP4oEwr1GzlZpu/view?usp=sharing
 주딱 픽
 
+https://raw.githubusercontent.com/Zziniswell/Sharelist/refs/heads/main/Adguard%20gallery%20filter.txt
+! Title: 애드가드 갤러리 필터
+! 버전: 2025-03-18
+! Description: 오차단 및 Anti-adblock, 광고(영역) 등 List-KR의 많은 문제점을 해결합니다. 애드가드, uBo, 브레이브
+! 홈페이지: https://m.dcinside.com/gallog/cent8649
 
 # -
 NAVER
